@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Login from "./Login";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Register(props) {
   const [fname, setfname] = useState("");
@@ -29,6 +30,17 @@ function Register(props) {
   const onClick = (event) => {
     event.preventDefault();
 
+    if ( fname && lname && date && userDetails.email && userDetails.password
+    
+        ) {
+          //programatically navigate
+          console.log("props", props);
+          props.history.push("/Login");
+        } else {
+          console.log("not valis");
+        }
+    
+    
     // if(date===""){
     //   setvaliddate(true)
     // }
@@ -111,144 +123,102 @@ function Register(props) {
   //   };
 
   return (
-    <div>
-      <div>
-        <input
-          placeholder="Firtsname"
-          type="text"
-          onChange={(event) => {
-            // confirmPassword();
-            setfname(event.target.value);
-            const expr = /^[a-zA-Z_]{3,15}$/;
-            if (!expr.test(fname)) {
-              setnameerror(true);
-            } else {
-              setnameerror(false);
-            }
-          }}
-        />
-        {nameerror ? (
-          <p
-            style={{
-              color: "red",
-              fontSize: 12,
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            Name is not valid
-          </p>
-        ) : null}
-      </div>
-      <div>
-        <input
-          placeholder="Lastsname"
-          type="text"
-          onChange={(event) => {
-            // confirmPassword();
-            setlname(event.target.value);
-            const expr = /^[a-zA-Z_]{3,15}$/;
-            if (!expr.test(lname)) {
-              setlnameerror(true);
-            } else {
-              setlnameerror(false);
-            }
-          }}
-        />
-        {lnameerror ? (
-          <p
-            style={{
-              color: "red",
-              fontSize: 12,
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            Name is not valid
-          </p>
-        ) : null}
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
-        <label htmlFor=""> Gender : </label>
-        <div className="form-check form-check-inline">
-          <input
-            // style="outline: 1px solid #ab1a23"
-            className="form-check-input"
-            type="radio"
-            value="male"
-            name="inlineRadioOptions"
-            id="inlineRadio1"
-            onChange={(event) => {
-              setGender(event.target.value);
-              setGenderError(false);
-            }}
-          />
-          <label className="form-check-label" htmlFor="inlineRadio1">
-            Male
-          </label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input
-            // style="outline: 1px solid #ab1a23"
-            className="form-check-input"
-            type="radio"
-            value="Female"
-            name="inlineRadioOptions"
-            id="inlineRadio2"
-            onChange={(event) => {
-              setGender(event.target.value);
-              setGenderError(false);
-            }}
-          />
-          <label className="form-check-label" htmlFor="inlineRadio2">
-            Female
-          </label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input
-            // style="outline: 1px solid #ab1a23"
-            className="form-check-input"
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio3"
-            value="Other"
-            onChange={(event) => {
-              setGender(event.target.value);
-              setGenderError(false);
-            }}
-          />
-          <label className="form-check-label" htmlFor="inlineRadio3">
-            other
-          </label>
-        </div>
-      </div>
+    <div className="register_body">
+      <div className="container1">
+        <div className="title">Registration Form</div>
+        <div className="content">
+          <div className="user-details">
+            <div className="input-box">
+              <span className="details">Full Name</span>
 
-      {genderError ? (
-        <p style={{ color: "red", fontSize: 12, padding: 0, margin: 0 }}>
-          Select gender
-        </p>
-      ) : (
-        ""
-      )}
+              <input
+                placeholder="Firtsname"
+                type="text"
+                onChange={(event) => {
+                  // confirmPassword();
+                  setfname(event.target.value);
+                  const expr = /^[a-zA-Z_]{3,15}$/;
+                  if (!expr.test(fname)) {
+                    setnameerror(true);
+                  } else {
+                    setnameerror(false);
+                  }
+                }}
+              />
+              {nameerror ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    textAlign: "left",
+                    margin: 0,
+                  }}
+                >
+                  Firstname is not valid
+                </p>
+              ) : null}
+            </div>
+            <div className="input-box">
+              <span className="details">Lastname</span>
 
-      <div>
-        <label> DOB : </label>{" "}
-        <input
-          type="date"
-          onChange={(event) => {
-            setdate(event.target.value);
-            setvaliddate(false);
-          }}
-        />
-        {validdate ? (
-          <p style={{ color: "red", fontSize: 12, padding: 0, margin: 0 }}>
-            Enter DOB
-          </p>
-        ) : (
-          ""
-        )}
-      </div>
-      {/* <div>
+              <input
+                placeholder="Lastsname"
+                type="text"
+                onChange={(event) => {
+                  // confirmPassword();
+                  setlname(event.target.value);
+                  const expr = /^[a-zA-Z_]{3,15}$/;
+                  if (!expr.test(lname)) {
+                    setlnameerror(true);
+                  } else {
+                    setlnameerror(false);
+                  }
+                }}
+              />
+              {lnameerror ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
+                    textAlign: "left",
+                  }}
+                >
+                  Lastame is not valid
+                </p>
+              ) : null}
+            </div>
+
+            <div className="input-box">
+              <span className="details">DOB</span>
+
+              <input
+                type="date"
+                onChange={(event) => {
+                  setdate(event.target.value);
+                  setvaliddate(false);
+                }}
+              />
+              {validdate ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
+
+                    textAlign: "left",
+                  }}
+                >
+                  Enter DOB
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+            {/* <div>
         <input
           type="text"
           onChange={(event) => {
@@ -270,109 +240,118 @@ function Register(props) {
         )}
       </div> */}
 
-      <div>
-        <input
-          value={userDetails.email}
-          type="password"
-          name="email"
-          onChange={(event) => {
-            handleChange(event);
-            let mail = event.target.value;
+            <div className="input-box">
+              <span className="details">Email</span>
+              <input
+                value={userDetails.email}
+                type="text"
+                name="email"
+                onChange={(event) => {
+                  handleChange(event);
+                  let mail = event.target.value;
+                  if (mail) {
+                    setemailErrorEmpty(false);
+                  }
+                  const filter =
+                    /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,25})$/;
 
-            const filter =
-              /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,25})$/;
+                  if (filter.test(mail)) {
+                    setemailError(false);
+                  } else {
+                    setemailError(true);
+                  }
+                }}
+                placeholder="Enter mail"
+              />{" "}
+              {emailError && userDetails.email ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
+                  }}
+                >
+                  mail is incorrect
+                </p>
+              ) : emailErrorEmpty ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
 
-            if (filter.test(mail)) {
-              setemailError(false);
-            } else {
-              setemailError(true);
-            }
-          }}
-          placeholder="Enter mail"
-        />{" "}
-        {emailError && userDetails.email ? (
-          <p
-            style={{
-              color: "red",
-              fontSize: 12,
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            mail is incorrect
-          </p>
-        ) : (
-          emailErrorEmpty  ?  (
-            <p
-              style={{
-                color: "red",
-                fontSize: 12,
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              mail can't be empty
-            </p>
-          ) : (null)
-        )}
-      </div>
-      <div style={{}}>
-        <input
-          value={userDetails.password}
-          name="password"
-          type="password"
-          onChange={(event) => {
-            let pass = event.target.value;
-            handleChange(event);
-            let validPassReg =
-              /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,16}/;
+                    textAlign: "left",
+                  }}
+                >
+                  Mail can't be empty
+                </p>
+              ) : null}
+            </div>
+            <div className="input-box" style={{}}>
+              <span className="details">Password</span>
 
-            if (!validPassReg.test(pass)) {
-              setPasswordError(true);
-            } else {
-              setPasswordError(false);
-            }
-          }}
-          placeholder="password"
-          style={{
-            marginTop: 20,
-            minWidth: 300,
-            maxWidth: 450,
-            height: 30,
-            borderRadius: 4,
-            outline: "none",
-            border: "0.5px solid grey",
-            paddingLeft: 10,
-          }}
-        />
-        {passwordError && userDetails.password ? (
-          <p
-            style={{
-              color: "red",
-              fontSize: 12,
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            password is incorrect
-          </p>
-        ) : (
-          passwordErrorEmpty && (
-            <p
-              style={{
-                color: "red",
-                fontSize: 12,
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              password can't be empty
-            </p>
-          )
-        )}
-      </div>
-      <div>
-        {/* <input
+              <input
+                value={userDetails.password}
+                name="password"
+                type="password"
+                onChange={(event) => {
+                  let pass = event.target.value;
+                  handleChange(event);
+                  let validPassReg =
+                    /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,16}/;
+
+                  if (!validPassReg.test(pass)) {
+                    setPasswordError(true);
+                  } else {
+                    setPasswordError(false);
+                  }
+                }}
+                placeholder="password"
+                // style={{
+                //   marginTop: 20,
+                //   minWidth: 300,
+                //   maxWidth: 450,
+                //   height: 30,
+                //   borderRadius: 4,
+                //   outline: "none",
+                //   border: "0.5px solid grey",
+                //   paddingLeft: 10,
+                // }}
+              />
+              {passwordError && userDetails.password ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
+
+                    textAlign: "left",
+                  }}
+                >
+                  Password is incorrect
+                </p>
+              ) : (
+                passwordErrorEmpty && (
+                  <p
+                    style={{
+                      color: "red",
+                      fontSize: 12,
+                      padding: 0,
+                      margin: 0,
+
+                      textAlign: "left",
+                    }}
+                  >
+                    Password can't be empty
+                  </p>
+                )
+              )}
+            </div>
+            <div className="input-box">
+              {/* <input
           value={userDetails.password}
           name="password"
           type="password"
@@ -400,39 +379,134 @@ function Register(props) {
             paddingLeft: 10,
           }}
         /> */}
+              <span className="details">Confirm Password</span>
 
-        <input
-          placeholder="confirm password"
-          name="confpass"
-          type="password"
-          onChange={(event) => {
-            // confirmPassword();
-            setconfirmPass(event.target.value);
-          }}
-        />
+              <input
+                placeholder="confirm password"
+                name="confpass"
+                type="password"
+                onChange={(event) => {
+                  // confirmPassword();
+                  setconfirmPass(event.target.value);
+                }}
+              />
+
+              {confirmPass && confirmPass !== userDetails.password ? (
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: 12,
+                    padding: 0,
+                    margin: 0,
+
+                    textAlign: "left",
+                  }}
+                >
+                  Password is not matching
+                </p>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="gender-details">
+            <input
+              // style="outline: 1px solid #ab1a23"
+              className="form-check-input"
+              type="radio"
+              value="male"
+              id="dot-1"
+              name="inlineRadioOptions"
+              onChange={(event) => {
+                setGender(event.target.value);
+                setGenderError(false);
+              }}
+            />
+
+            <input
+              // style="outline: 1px solid #ab1a23"
+              className="form-check-input"
+              type="radio"
+              value="Female"
+              id="dot-2"
+              name="inlineRadioOptions"
+              onChange={(event) => {
+                setGender(event.target.value);
+                setGenderError(false);
+              }}
+            />
+
+            <input
+              // style="outline: 1px solid #ab1a23"
+              className="form-check-input"
+              type="radio"
+              id="dot-3"
+              name="inlineRadioOptions"
+              value="Other"
+              onChange={(event) => {
+                setGender(event.target.value);
+                setGenderError(false);
+              }}
+            />
+            <span
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                fontWeight: "500",
+                marginBottom: "5px",
+
+                textAlign: "left",
+              }}
+              className="gender-title"
+            >
+              Gender
+            </span>
+            <div className="category">
+              <label for="dot-1">
+                <span className="dot one"></span>
+                <span className="gender">Male</span>
+              </label>
+              <label for="dot-2">
+                <span className="dot two"></span>
+                <span className="gender">Female</span>
+              </label>
+              <label for="dot-3">
+                <span className="dot three"></span>
+                <span className="gender">Other</span>
+              </label>
+            </div>
+          </div>
+
+          {genderError ? (
+            <p
+              style={{
+                textAlign: "left",
+
+                color: "red",
+                fontSize: 12,
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              please select gender
+            </p>
+          ) : (
+            ""
+          )}
+
+          <button
+            className="Register_button"
+            style={{
+              marginTop: 20,
+            }}
+            onClick={onClick}
+          >
+            Submit
+          </button>
+        </div> Already have an account ? 
+        <Link style={{textDecoration:"none"}} to="/login">
+         Login here!
+          </Link>
       </div>
-
-      {confirmPass && confirmPass !== userDetails.password ? (
-        <p
-          style={{
-            color: "red",
-            fontSize: 12,
-            padding: 0,
-            margin: 0,
-          }}
-        >
-          password is not matching
-        </p>
-      ) : null}
-
-      <button
-        style={{
-          marginTop: 20,
-        }}
-        onClick={onClick}
-      >
-        Submit
-      </button>
     </div>
   );
 }

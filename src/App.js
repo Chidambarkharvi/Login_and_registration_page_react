@@ -12,24 +12,43 @@ function App() {
           style={{
             display: "flex",
             justifyContent: "space-between",
+            backgroundColor: "rgb(56, 102, 189)",
+            
           }}
         >
           <div>
-            <p>LOGO</p>
-          </div>{" "}
+            <p
+              style={{
+               
+              }}
+            >
+              <i className="App-logo" style={{fontSize:"40px" , color:"white"  ,marginLeft:"50px", marginTop:"10px"}} class="fab fa-pied-piper-pp"></i>
+            </p>
+          </div>
           <nav
-            style={{
-              width: "30%",
+            style={{ 
 
+              width: "30%",
+              paddingTop: "20px",
               display: "flex",
               justifyContent: "space-evenly",
             }}
           >
-            <Link to="/home">Home</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register </Link>
+            <Link style={{ color: "white", textDecoration: "none", marginRight:"100px" }} to="/home">
+              Home
+            </Link>
+            <Link style={{ color: "white", textDecoration: "none" ,marginRight:"100px"  }} to="/login">
+              Login
+            </Link>
+            <Link
+              style={{ color: "white", textDecoration: "none" ,marginRight:"90px" }}
+              to="/register"
+            >
+              Register
+            </Link>
           </nav>
         </div>
+
 
         <div>
           <Route
@@ -38,6 +57,7 @@ function App() {
               return <Home userName="sachin" />;
             }}
           />
+          
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </div>

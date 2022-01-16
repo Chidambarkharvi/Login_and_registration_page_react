@@ -33,8 +33,8 @@ function Login(props) {
     if (
       userDetails.email &&
       userDetails.password &&
-      filter.test(mail) &&
-      validPassReg.test(pass)
+      !passwordError &&
+      !emailError
     ) {
       //programatically navigate
       console.log("props", props);
@@ -76,12 +76,12 @@ function Login(props) {
     <div className="container">
       <div className="box-1">
         <div className="content-holder">
-          <h2>Hello!</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+          <h2 className=" " >Hello!</h2>
+          <p>Don't have an account. <br/> Click here to register </p>
           <Link to="/register">
-            <button class="button-1"> Register here</button>{" "}
+            <button className="button-1"> Register here</button>{" "}
           </Link>
-          <button class="button-2">Login</button>
+          <button className="button-2">Login</button>
         </div>
       </div>
 
@@ -101,18 +101,21 @@ function Login(props) {
               width: 250,
               display: "flex",
               flexDirection: "column",
-              marginBottom: 20,
+              marginBottom: 30,
             }}
           >
             <input
               className="input-field"
               style={{}}
               value={userDetails.email}
-              type="password"
+              type="type"
               name="email"
               onChange={(event) => {
                 handleChange(event);
                 let mail = event.target.value;
+                if (mail) {
+                  setemailErrorEmpty(false);
+                }
 
                 const filter =
                   /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,25})$/;
@@ -159,7 +162,8 @@ function Login(props) {
             style={{
               width: 250,
               display: "flex",
-              flexDirection: "column",
+              marginBottom: 30,
+              flexDirection: "column", 
             }}
           >
             <input
@@ -170,6 +174,9 @@ function Login(props) {
               onChange={(event) => {
                 let pass = event.target.value;
                 handleChange(event);
+                if (pass) {
+                  setPasswordErrorEmpty(false);
+                }
                 var validPassReg =
                   /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=-\?;,./{}|\":<>\[\]\\\' ~_]).{8,}/;
 
@@ -210,8 +217,6 @@ function Login(props) {
                 </p>
               )
             )}{" "}
-            <br />
-            <br />
           </div>
 
           <div>
@@ -224,6 +229,5 @@ function Login(props) {
     </div>
   );
 }
-
 
 export default Login;
